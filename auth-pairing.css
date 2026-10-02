@@ -1,0 +1,726 @@
+/* ==========================================================================
+   MÓDULO DE AUTENTICACIÓN Y VINCULACIÓN PRIVADA DE PAREJA (UI/UX)
+   Diseño Blanco, Limpio, Elegante y Pastel con Scroll Suave Adaptable
+   Para Jonathan & Riham 💖
+   ========================================================================== */
+
+/* Bloqueo de scroll cuando el portal de bienvenida/identificación está activo */
+body.auth-locked {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* 1. OVERLAY DE PANTALLA COMPLETA - FONDO BLANCO LUMINOSO Y LIMPIO */
+.auth-pairing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
+}
+
+.auth-pairing-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* 2. TARJETA PRINCIPAL DEL PORTAL - BLANCA, CRISTALINA Y SIN CORTES */
+.auth-portal-card {
+  margin: auto;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+  padding: 32px 28px;
+  position: relative;
+  box-sizing: border-box;
+  animation: auth-portal-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Botón cerrar modal ('X' arriba a la derecha) */
+.btn-close-auth-modal {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.22s ease;
+  z-index: 10;
+}
+
+.btn-close-auth-modal:hover {
+  background: #ffe4e8;
+  color: #e11d48;
+  border-color: #fecdd3;
+  transform: rotate(90deg) scale(1.08);
+}
+
+/* 3. ENCABEZADO DEL PORTAL */
+.auth-portal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.auth-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+  margin-bottom: 12px;
+}
+
+.step-badge-num {
+  background: #e11d48;
+  color: #ffffff;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.auth-portal-icon-wrap {
+  font-size: 2.5rem;
+  margin-bottom: 6px;
+  display: block;
+  animation: auth-heartbeat 2s infinite;
+}
+
+.auth-portal-title {
+  font-family: var(--font-heading, "Playfair Display", serif);
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.auth-portal-sub {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0 auto;
+  max-width: 380px;
+}
+
+.auth-portal-sub strong {
+  color: #e11d48;
+}
+
+/* 4. PASO 1: TARJETAS GRANDES 1-CLICK (RIHAM / JONATHAN) */
+.auth-quick-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 20px 0 16px 0;
+}
+
+.auth-identity-big-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 14px;
+  border-radius: 18px;
+  border: 2px solid #e2e8f0;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.auth-identity-big-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: #ff4d6d;
+  background: #fff5f7;
+  box-shadow: 0 10px 22px rgba(255, 77, 109, 0.15);
+}
+
+.card-big-avatar {
+  font-size: 2.8rem;
+  margin-bottom: 6px;
+  display: block;
+  transition: transform 0.22s ease;
+}
+
+.auth-identity-big-card:hover .card-big-avatar {
+  transform: scale(1.12) rotate(4deg);
+}
+
+.card-big-name {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.card-big-loc {
+  font-size: 0.74rem;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.card-enter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff5c8a, #e11d48);
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(225, 29, 72, 0.25);
+  transition: all 0.2s ease;
+}
+
+/* 5. FORMULARIO DESPLEGABLE OPCIONAL (EMAIL / CONTRASEÑA) */
+.auth-toggle-advanced-wrap {
+  text-align: center;
+  margin: 14px 0 6px 0;
+}
+
+.btn-text-link {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-text-link:hover {
+  color: #e11d48;
+  background: #fff1f2;
+}
+
+.auth-advanced-box {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed #e2e8f0;
+  animation: auth-portal-pop 0.3s ease;
+}
+
+.auth-tabs-nav {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 16px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.auth-tab-btn.active {
+  background: #ffffff;
+  color: #e11d48;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.auth-form-group {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.auth-input-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.auth-input-field {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
+  background: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #0f172a;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.auth-input-field:focus {
+  outline: none;
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #ff5c8a, #e11d48);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(225, 29, 72, 0.25);
+  transition: all 0.22s ease;
+  margin-top: 10px;
+}
+
+.auth-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(225, 29, 72, 0.35);
+}
+
+.auth-alert-message {
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.auth-alert-message.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.auth-alert-message.hidden {
+  display: none;
+}
+
+/* 6. PASO 2: EMPAREJAMIENTO DE DISPOSITIVOS */
+.pairing-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.pairing-action-card {
+  border: 2px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.pairing-action-card.active {
+  border-color: #ff4d6d;
+  background: #fff5f7;
+  box-shadow: 0 4px 14px rgba(255, 77, 109, 0.15);
+}
+
+.pairing-card-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.pairing-card-title {
+  display: block;
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.pairing-card-desc {
+  display: block;
+  font-size: 0.72rem;
+  color: #64748b;
+  line-height: 1.3;
+}
+
+/* Caja de Código de Pareja */
+.pair-code-display-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 18px 14px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pair-code-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.pair-code-badge-wrap {
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 2px dashed #ff4d6d;
+  margin-bottom: 12px;
+}
+
+.pair-code-digits {
+  font-family: monospace, var(--font-heading);
+  font-size: 1.95rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #e11d48;
+}
+
+.pair-code-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.btn-copy-pair-code,
+.btn-share-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 15px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-pair-code {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+}
+
+.btn-copy-pair-code:hover {
+  border-color: #ff4d6d;
+  color: #e11d48;
+}
+
+.btn-share-whatsapp {
+  border: none;
+  background: #25d366;
+  color: #ffffff;
+}
+
+.btn-share-whatsapp:hover {
+  background: #1eb954;
+  transform: translateY(-1px);
+}
+
+.pair-waiting-pulse {
+  font-size: 0.78rem;
+  color: #059669;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Caja Ingresar Código */
+.pair-join-form-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 18px 14px;
+  margin-bottom: 20px;
+}
+
+.pair-code-input-large {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Acciones Finales del Paso 2 */
+.pairing-footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-finish-flow {
+  width: 100%;
+  padding: 13px 20px;
+  border-radius: 14px;
+  border: none;
+  background: linear-gradient(135deg, #ff5c8a, #e11d48);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.96rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(225, 29, 72, 0.3);
+  transition: all 0.22s ease;
+}
+
+.btn-finish-flow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(225, 29, 72, 0.45);
+}
+
+/* 7. NAVBAR STATUS CHIP & DROPDOWN */
+.nav-pair-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.nav-pair-status-chip:hover {
+  border-color: #ff4d6d;
+  background: #fff5f7;
+}
+
+.nav-pair-avatars-merged {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.nav-pair-avatars-merged span:last-child {
+  margin-left: -5px;
+}
+
+.nav-pair-names {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0f172a;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.live-pulse-green {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  min-width: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 rgba(16, 185, 129, 0.4);
+  animation: live-pulse-anim 1.8s infinite;
+}
+
+@keyframes live-pulse-anim {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Dropdown Menu */
+.pair-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+  animation: auth-portal-pop 0.25s ease;
+}
+
+.pair-dropdown-menu.hidden {
+  display: none;
+}
+
+.pair-dropdown-header {
+  padding: 8px 10px 10px 10px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.pair-dropdown-header strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #0f172a;
+}
+
+.pair-dropdown-header small {
+  display: block;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.pair-dropdown-code-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #e11d48;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+}
+
+.pair-dropdown-item {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.pair-dropdown-item:hover {
+  background: #fff1f2;
+  color: #e11d48;
+}
+
+.pair-dropdown-item.danger {
+  color: #ef4444;
+}
+
+.pair-dropdown-item.danger:hover {
+  background: #fef2f2;
+}
+
+/* 8. ANIMACIONES Y UTILIDADES */
+@keyframes auth-portal-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes auth-heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.auth-view-pane.hidden,
+.auth-advanced-box.hidden,
+.pair-join-form-box.hidden {
+  display: none !important;
+}
+
+/* 9. RESPONSIVO */
+@media (max-width: 540px) {
+  .auth-pairing-overlay {
+    padding: 20px 12px;
+  }
+  .auth-portal-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+  .auth-portal-title {
+    font-size: 1.4rem;
+  }
+  .auth-quick-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .pairing-options-grid {
+    grid-template-columns: 1fr;
+  }
+  .pair-code-actions {
+    flex-direction: column;
+  }
+  .btn-copy-pair-code, .btn-share-whatsapp {
+    width: 100%;
+    justify-content: center;
+  }
+}

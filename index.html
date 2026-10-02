@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Jonathan, Mi Amor | Nuestro Universo ❤️</title>
+    <meta name="description" content="Un rincón interactivo, romántico y eterno hecho con todo el amor de Riham para Jonathan. De Guayaquil, Ecuador a Cataluña, España desde el 21 de mayo de 2026.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💖</text></svg>">
+
+    <!-- Google Fonts: Tipografía Romántica, Moderna y Elegante -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Three.js y OrbitControls para el Globo Terráqueo 3D Realista -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <!-- Gun.js para Sincronización en Tiempo Real P2P / Relay entre España y Ecuador -->
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+
+    <!-- Supabase JS Client para Realtime Broadcast & Database -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Firebase Compat SDKs (Para Backend / Realtime DB en la nube) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- Hojas de Estilos -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth-pairing.css">
+</head>
+<body>
+    <!-- Canvas de Fondo Interactivo: Corazones y Polvo de Estrellas -->
+    <canvas id="bg-love-canvas"></canvas>
+
+    <!-- Barra de Navegación Flotante Glassmorphic -->
+    <header class="navbar-glass">
+        <a href="#inicio" class="nav-brand" title="Nuestro Universo">
+            <div class="brand-pulse">
+                <i class="fa-solid fa-heart heart-pulse-icon"></i>
+            </div>
+            <span class="brand-title-clean">Nuestro Universo ❤️</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#inicio" class="nav-link active"><i class="fa-solid fa-house"></i> <span>Inicio</span></a>
+            <a href="#distancia-3d" class="nav-link"><i class="fa-solid fa-earth-americas"></i> <span>Mapa 3D</span></a>
+            <a href="#fechas" class="nav-link"><i class="fa-solid fa-calendar-heart"></i> <span>Fechas</span></a>
+            <a href="#galeria-gamer" class="nav-link"><i class="fa-solid fa-gamepad"></i> <span>Aventuras</span></a>
+            <a href="#nosotros" class="nav-link highlight-nav-link"><i class="fa-solid fa-heart-pulse"></i> <span>Nosotros</span></a>
+            <a href="#nuestros-hijos" class="nav-link"><i class="fa-solid fa-paw"></i> <span>Hijos 🐾</span></a>
+            <a href="#bloc-notas" class="nav-link"><i class="fa-solid fa-note-sticky"></i> <span>Notas</span></a>
+            <a href="#buzon-cartas" class="nav-link"><i class="fa-solid fa-envelope-circle-check"></i> <span>Buzón 💌</span></a>
+            <a href="#enviar-abrazo" class="nav-link special-hug-nav-link"><i class="fa-solid fa-hands-holding-child"></i> <span>Abrazos 🫂</span></a>
+        </nav>
+
+        <div class="nav-actions">
+            <!-- Botón de Carta Secreta -->
+            <button id="open-letter-btn" class="cta-letter-btn" title="Abrir nuestra carta secreta">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Nuestra Carta</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal -->
+    <main class="main-wrapper">
+
+        <!-- ============================================================== -->
+        <!-- 1. SECCIÓN HERO & CRONÓMETRO DE AMOR (DESDE EL 21 DE MAYO)     -->
+        <!-- ============================================================== -->
+        <section id="inicio" class="section-block hero-block">
+            <div class="hero-badge">
+                <i class="fa-solid fa-sparkles"></i>
+                <span>Nuestra historia comenzó el <strong>21 de Mayo de 2026</strong> ✨</span>
+            </div>
+
+            <h1 class="hero-main-title">
+                Para el chico más especial del universo: <br>
+                <span class="gradient-love name-recipient">Jonathan</span>
+            </h1>
+
+            <p class="hero-quote-text">
+                "Desde aquel <strong>21 de mayo de 2026</strong> en el que nos escribimos por primera vez, cada risa compartida, cada partida juntos y cada desvelo se ha convertido en mi parte favorita de la vida."
+            </p>
+
+            <!-- Tarjeta Principal del Cronómetro -->
+            <div class="timer-card-wrapper">
+                <div class="timer-card glass-panel">
+                    <div class="timer-header">
+                        <div class="timer-tag">
+                            <i class="fa-solid fa-fire-flame-curved timer-fire-icon"></i>
+                            <span>Tiempo amándonos desde el 21 de Mayo:</span>
+                        </div>
+                        <div class="timer-chip" id="edit-date-chip" title="Haz clic para ajustar la fecha si lo deseas">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span id="display-start-date">21 Mayo 2026</span>
+                        </div>
+                    </div>
+
+                    <div class="timer-grid">
+                        <div class="time-box">
+                            <span class="time-digit" id="timer-days">00</span>
+                            <span class="time-unit">Días</span>
+                        </div>
+                        <div class="time-colon">:</div>
+                        <div class="time-box">
+                            <span class="time-digit" id="timer-hours">00</span>
+                            <span class="time-unit">Horas</span>
+                        </div>
+                        <div class="time-colon">:</div>
+                        <div class="time-box">
+                            <span class="time-digit" id="timer-minutes">00</span>
+                            <span class="time-unit">Minutos</span>
+                        </div>
+                        <div class="time-colon">:</div>
+                        <div class="time-box">
+                            <span class="time-digit pulse-second" id="timer-seconds">00</span>
+                            <span class="time-unit">Segundos</span>
+                        </div>
+                    </div>
+
+                    <div class="timer-footer">
+                        <div class="heartbeat-badge">
+                            <span class="heart-pulse-dot"></span>
+                            <span id="live-total-seconds">Calculando segundos juntos...</span>
+                        </div>
+                        <button class="btn-love-burst" id="btn-send-hug">
+                            <i class="fa-solid fa-heart"></i> <span>¡Enviarte un Abrazo!</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-down-cue">
+                <span>Explora nuestro universo juntos</span>
+                <i class="fa-solid fa-chevron-down bounce-arrow"></i>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 2. SECCIÓN MAPA 3D DE LA DISTANCIA (ECUADOR ✈️ ESPAÑA)          -->
+        <!-- ============================================================== -->
+        <section id="distancia-3d" class="section-block distance-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill"><i class="fa-solid fa-earth-americas"></i> Planeta Tierra 3D Realista</span>
+                <h2 class="section-title">Nuestra Conexión en el <span class="gradient-love">Mundo 🌍✨</span></h2>
+                <p class="section-subtitle">
+                    Una vista real y fidedigna de nuestro planeta desde el espacio, con un sutil destello que une Guayaquil y Cataluña.
+                </p>
+            </div>
+
+            <!-- 1. Visor 3D del Planeta Tierra (Despejado, Majestuoso y Espacioso) -->
+            <div class="globe-viewport-card glass-panel">
+                <!-- Canvas 3D de Three.js -->
+                <div id="globe-3d-canvas-container" class="globe-canvas-holder">
+                    <div id="globe-loading-indicator" class="globe-loading">
+                        <div class="spinner-love"></div>
+                        <span>Generando planeta Tierra 3D realista...</span>
+                    </div>
+                </div>
+
+                <!-- Insignia Flotante Superior: Distancia -->
+                <div class="globe-top-floating-badge glass-panel-sm">
+                    <i class="fa-solid fa-plane-departure flight-icon-anim"></i>
+                    <span class="dist-pill-text"><strong>9.080 km</strong> en línea recta</span>
+                    <span class="dist-pill-heart">"0.00 km en el corazón" ❤️</span>
+                </div>
+
+                <!-- Barra Flotante de Enfoque de Cámara 3D -->
+                <div class="globe-floating-cam-bar">
+                    <button class="cam-btn" id="btn-focus-ecuador"><span>🇪🇨</span> Guayaquil</button>
+                    <button class="cam-btn active" id="btn-focus-both"><i class="fa-solid fa-maximize"></i> Trayectoria</button>
+                    <button class="cam-btn" id="btn-focus-spain"><span>🇪🇸</span> Cataluña</button>
+                    <button class="cam-btn icon-btn-round" id="btn-toggle-autorotate" title="Pausar/Reanudar Rotación">
+                        <i class="fa-solid fa-rotate" id="rotate-icon"></i>
+                    </button>
+                </div>
+
+                <!-- Leyenda e Indicador Táctil -->
+                <div class="globe-floating-legend">
+                    <span class="legend-chip"><span class="dot dot-gye"></span> Guayaquil (Rojo 🔴)</span>
+                    <span class="legend-connector"></span>
+                    <span class="legend-chip"><span class="dot dot-cat"></span> Cataluña (Verde 🟢)</span>
+                    <span class="legend-tip"><i class="fa-solid fa-hand-pointer"></i> Arrastra para girar • Rueda/Pellizca para zoom</span>
+                </div>
+            </div>
+
+            <!-- 2. Grid de Información y Widgets en Vivo (Debajo del Globo 3D) -->
+            <div class="globe-info-grid">
+                <!-- Tarjeta 1: Relojes Duales y Huso Horario -->
+                <div class="globe-info-card glass-panel">
+                    <div class="info-card-header">
+                        <div class="info-card-title">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>Horas Locales & Diferencia Horaria</span>
+                        </div>
+                        <div class="clock-diff-badge" id="clock-tz-diff">
+                            <i class="fa-solid fa-arrows-left-right"></i> 7h diferencia
+                        </div>
+                    </div>
+
+                    <div class="dual-clocks-display">
+                        <!-- Reloj Guayaquil -->
+                        <div class="city-clock-tile tile-ecuador">
+                            <div class="city-clock-header">
+                                <span class="city-clock-flag">🇪🇨</span>
+                                <div class="city-clock-name">
+                                    <strong>Guayaquil, Ecuador</strong>
+                                    <small>Donde está Jonathan 👦🏻✨</small>
+                                </div>
+                            </div>
+                            <div class="city-clock-time" id="clock-guayaquil">--:--:--</div>
+                            <div class="city-clock-meta">
+                                <span class="coord-tag"><span class="dot dot-gye"></span> Marcador Rojo 🔴</span>
+                                <span class="tz-tag">ECT (UTC-5)</span>
+                            </div>
+                        </div>
+
+                        <!-- Separador -->
+                        <div class="clock-bridge-divider">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+
+                        <!-- Reloj Cataluña -->
+                        <div class="city-clock-tile tile-spain">
+                            <div class="city-clock-header">
+                                <span class="city-clock-flag">🇪🇸</span>
+                                <div class="city-clock-name">
+                                    <strong>Cataluña, España</strong>
+                                    <small>Donde está Riham 👧🏻🌸</small>
+                                </div>
+                            </div>
+                            <div class="city-clock-time" id="clock-catalunya">--:--:--</div>
+                            <div class="city-clock-meta">
+                                <span class="coord-tag"><span class="dot dot-cat"></span> Marcador Verde 🟢</span>
+                                <span class="tz-tag">CEST (UTC+2)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Widget de Clima en Tiempo Real -->
+                <div class="globe-info-card weather-dual-widget glass-panel" id="weather-dual-widget">
+                    <div class="info-card-header">
+                        <div class="info-card-title">
+                            <i class="fa-solid fa-cloud-sun-rain"></i>
+                            <span>Clima en Tiempo Real (Open-Meteo)</span>
+                        </div>
+                        <button class="btn-refresh-weather" id="btn-refresh-weather" title="Actualizar Clima en Vivo">
+                            <i class="fa-solid fa-arrows-rotate" id="icon-refresh-weather"></i>
+                            <span>Actualizar</span>
+                        </button>
+                    </div>
+
+                    <div class="weather-cards-pair">
+                        <!-- Tarjeta Clima Cataluña -->
+                        <div class="weather-city-card card-weather-spain">
+                            <div class="weather-city-top">
+                                <span class="weather-city-flag">🇪🇸</span>
+                                <div class="weather-city-meta">
+                                    <strong>Cataluña, España</strong>
+                                    <small>Riham 👧🏻🌸</small>
+                                </div>
+                                <span class="weather-condition-icon" id="icon-weather-cat">☀️</span>
+                            </div>
+                            <div class="weather-temp-row">
+                                <span class="weather-temp-digits" id="temp-weather-cat">24°C</span>
+                                <span class="weather-condition-desc" id="desc-weather-cat">Soleado & Templado</span>
+                            </div>
+                            <div class="weather-details-pill">
+                                <span><i class="fa-solid fa-droplet"></i> Hum: <strong id="humidity-weather-cat">58%</strong></span>
+                                <span><i class="fa-solid fa-wind"></i> <strong id="wind-weather-cat">12 km/h</strong></span>
+                            </div>
+                        </div>
+
+                        <!-- Separador -->
+                        <div class="weather-connector-icon">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
+
+                        <!-- Tarjeta Clima Guayaquil -->
+                        <div class="weather-city-card card-weather-ecuador">
+                            <div class="weather-city-top">
+                                <span class="weather-city-flag">🇪🇨</span>
+                                <div class="weather-city-meta">
+                                    <strong>Guayaquil, Ecuador</strong>
+                                    <small>Jonathan 👦🏻✨</small>
+                                </div>
+                                <span class="weather-condition-icon" id="icon-weather-gye">🌤️</span>
+                            </div>
+                            <div class="weather-temp-row">
+                                <span class="weather-temp-digits" id="temp-weather-gye">29°C</span>
+                                <span class="weather-condition-desc" id="desc-weather-gye">Parcialmente Nublado</span>
+                            </div>
+                            <div class="weather-details-pill">
+                                <span><i class="fa-solid fa-droplet"></i> Hum: <strong id="humidity-weather-gye">74%</strong></span>
+                                <span><i class="fa-solid fa-wind"></i> <strong id="wind-weather-gye">15 km/h</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 3. SECCIÓN RECORDATORIO DE FECHAS ESPECIALES & CALENDARIO      -->
+        <!-- ============================================================== -->
+        <section id="fechas" class="section-block dates-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill"><i class="fa-solid fa-bell"></i> Memoria Romántica</span>
+                <h2 class="section-title">Nuestras Fechas Especiales <span class="gradient-love">¡Prohibido Olvidar! 😉</span></h2>
+                <p class="section-subtitle">
+                    Los días que marcaron y seguirán marcando nuestra historia. ¡Puedes guardarlas en el calendario de tu teléfono para que te avisen siempre!
+                </p>
+            </div>
+
+            <!-- Barra de Acciones de Fechas -->
+            <div class="dates-action-bar">
+                <div class="dates-count-tag" id="dates-count-tag">
+                    <i class="fa-solid fa-calendar-check"></i> <span id="dates-total-count">3</span> Fechas Sagradas
+                </div>
+                <button class="btn-primary-gradient" id="btn-open-add-date">
+                    <i class="fa-solid fa-calendar-plus"></i> <span>Añadir Nuevo Recordatorio</span>
+                </button>
+            </div>
+
+            <div class="dates-cards-grid" id="dates-cards-container">
+                <!-- Se renderizan dinámicamente con JavaScript (3 predeterminadas + creadas por el usuario) -->
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 4. SECCIÓN GALERÍA GAMER (CON SUBIDA DE FOTOS REALES)           -->
+        <!-- ============================================================== -->
+        <section id="galeria-gamer" class="section-block gallery-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill"><i class="fa-solid fa-gamepad"></i> Álbum Co-Op</span>
+                <h2 class="section-title">Nuestras Aventuras en <span class="gradient-love">Videojuegos 🎮✨</span></h2>
+                <p class="section-subtitle">
+                    Álbum de capturas y fotos de nuestras partidas juntos.
+                </p>
+            </div>
+
+            <!-- Filtros por Videojuego -->
+            <div class="gallery-filter-chips" id="gallery-filter-chips">
+                <button class="chip-filter active" data-filter="all"><i class="fa-solid fa-layer-group"></i> Todos los Juegos</button>
+                <button class="chip-filter" data-filter="roblox">🎲 Roblox (21)</button>
+                <button class="chip-filter" data-filter="minecraft">🧱 Minecraft (16)</button>
+                <button class="chip-filter" data-filter="arena_breakout">🎯 Arena Breakout (8)</button>
+            </div>
+
+            <!-- Barra de Acciones: Contador y Botón para Subir Foto -->
+            <div class="gallery-action-header">
+                <div class="gallery-count-pill" id="gallery-count-pill">
+                    <i class="fa-regular fa-images"></i> <span id="gallery-total-count">45</span> Fotos
+                </div>
+                <button class="btn-primary-gradient" id="btn-open-upload-modal">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> <span>Subir Foto / Captura Nueva</span>
+                </button>
+            </div>
+
+            <!-- Grid de Tarjetas Gamer -->
+            <div class="gamer-cards-grid" id="gamer-gallery-grid">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 5. SECCIÓN EXCLUSIVA "NOSOTROS" (FOTOS REALES Y PERSONALES)    -->
+        <!-- ============================================================== -->
+        <section id="nosotros" class="section-block nosotros-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill special-nosotros-pill"><i class="fa-solid fa-heart-pulse"></i> Apartado Exclusivo</span>
+                <h2 class="section-title">Nuestro Rincón Especial: <span class="gradient-love">Nosotros 👩🏻‍❤️‍👨🏻</span></h2>
+                <p class="section-subtitle">
+                    Nuestras fotos y recuerdos especiales.
+                </p>
+            </div>
+
+            <!-- Barra de Acciones de Nosotros -->
+            <div class="nosotros-action-header">
+                <div class="nosotros-count-pill" id="nosotros-count-pill">
+                    <i class="fa-solid fa-heart"></i> <span id="nosotros-total-count">3</span> Fotos
+                </div>
+                <button class="btn-primary-gradient" id="btn-open-upload-nosotros">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> <span>Añadir Foto a Nosotros</span>
+                </button>
+            </div>
+
+            <div class="nosotros-cards-grid" id="nosotros-gallery-grid">
+                <!-- Se llena dinámicamente con JavaScript desde la carpeta OTRAS y fotos subidas -->
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 6. SECCIÓN EXCLUSIVA "NUESTROS HIJOS" 🐾 (SOFI & BENJI)        -->
+        <!-- ============================================================== -->
+        <section id="nuestros-hijos" class="section-block pets-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill special-pets-pill"><i class="fa-solid fa-paw"></i> Los Consentidos de la Familia</span>
+                <h2 class="section-title">Nuestros Hijos <span class="gradient-love">Peluditos 🐾💖</span></h2>
+                <p class="section-subtitle">
+                    Sofi (Cataluña, España 🇪🇸) y Benji (Guayaquil, Ecuador 🇪🇨).
+                </p>
+            </div>
+
+            <!-- Grid de Tarjetas Principales de Mascotas -->
+            <div class="pets-main-grid">
+                <!-- Tarjeta 1: Sofi (Gata de Riham) -->
+                <div class="pet-card glass-panel pet-card-cat" id="card-pet-sofi">
+                    <div class="pet-card-ribbon ribbon-cat">
+                        <i class="fa-solid fa-cat"></i> Hija de Mamá (Riham) 👧🏻🌸
+                    </div>
+                    
+                    <div class="pet-photo-container">
+                        <img src="assets/pets/sofi/sofi_1.jpeg" alt="Sofi - La gata de Riham" class="pet-profile-img" id="img-pet-sofi" onerror="this.src='assets/pets/sofi.jpg'">
+                        <div class="pet-species-badge cat-badge">
+                            <span>🐱</span> Gatita
+                        </div>
+                        <label class="btn-change-pet-photo" title="Cambiar foto de perfil de Sofi">
+                            <i class="fa-solid fa-camera"></i>
+                            <input type="file" id="upload-pet-sofi" accept="image/*" style="display: none;">
+                        </label>
+                        <div class="pet-hearts-float" id="hearts-float-sofi"></div>
+                    </div>
+
+                    <div class="pet-info-header">
+                        <div class="pet-title-row">
+                            <h3 class="pet-name">Sofi <span class="pet-emoji-anim">🌸</span></h3>
+                            <span class="pet-origin-tag">🇪🇸 Cataluña, España</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Interacción -->
+                    <div class="pet-interaction-row">
+                        <button class="btn-pet-action btn-pet-sofi" id="btn-pet-sofi" title="Acariciar a Sofi">
+                            <i class="fa-solid fa-hand-holding-heart"></i> <span>Acariciar (¡Miau! 🐾)</span>
+                        </button>
+                        <button class="btn-treat-action" id="btn-treat-sofi" title="Darle un premio">
+                            <i class="fa-solid fa-fish"></i> <span id="treats-sofi-count">18</span> Premios 🐟
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2: Benji (Perro de Jonathan) -->
+                <div class="pet-card glass-panel pet-card-dog" id="card-pet-benji">
+                    <div class="pet-card-ribbon ribbon-dog">
+                        <i class="fa-solid fa-dog"></i> Hijo de Papá (Jonathan) 👦🏻✨
+                    </div>
+
+                    <div class="pet-photo-container">
+                        <img src="assets/pets/benji/benji_1.jpeg" alt="Benji - El perro de Jonathan" class="pet-profile-img" id="img-pet-benji" onerror="this.src='assets/pets/benji.jpg'">
+                        <div class="pet-species-badge dog-badge">
+                            <span>🐶</span> Perrito
+                        </div>
+                        <label class="btn-change-pet-photo" title="Cambiar foto de perfil de Benji">
+                            <i class="fa-solid fa-camera"></i>
+                            <input type="file" id="upload-pet-benji" accept="image/*" style="display: none;">
+                        </label>
+                        <div class="pet-hearts-float" id="hearts-float-benji"></div>
+                    </div>
+
+                    <div class="pet-info-header">
+                        <div class="pet-title-row">
+                            <h3 class="pet-name">Benji <span class="pet-emoji-anim">✨</span></h3>
+                            <span class="pet-origin-tag">🇪🇨 Guayaquil, Ecuador</span>
+                        </div>
+                    </div>
+
+                    <!-- Botones de Interacción -->
+                    <div class="pet-interaction-row">
+                        <button class="btn-pet-action btn-pet-benji" id="btn-pet-benji" title="Acariciar a Benji">
+                            <i class="fa-solid fa-hand-holding-heart"></i> <span>Acariciar (¡Guau! 🐾)</span>
+                        </button>
+                        <button class="btn-treat-action" id="btn-treat-benji" title="Darle un premio">
+                            <i class="fa-solid fa-bone"></i> <span id="treats-benji-count">24</span> Premios 🦴
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-sección: Álbum Completo de Fotos de Sofi & Benji -->
+            <div class="pets-album-section">
+                <div class="pets-album-header">
+                    <div class="pets-album-title">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <h3>Álbum Fotográfico de Sofi & Benji 📸🐾</h3>
+                    </div>
+
+                    <!-- Filtro por Mascota -->
+                    <div class="pet-filter-chips" id="pet-filter-chips">
+                        <button class="chip-filter active" data-pet-filter="all"><i class="fa-solid fa-paw"></i> Todos (<span id="count-pets-all">59</span>)</button>
+                        <button class="chip-filter" data-pet-filter="sofi">🐱 Sofi (<span id="count-pets-sofi">27</span>)</button>
+                        <button class="chip-filter" data-pet-filter="benji">🐶 Benji (<span id="count-pets-benji">32</span>)</button>
+                    </div>
+
+                    <button class="btn-primary-gradient" id="btn-open-upload-pet-photo">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> <span>Subir Foto de Mascota</span>
+                    </button>
+                </div>
+
+                <!-- Grid de Fotos de Mascotas -->
+                <div class="pets-gallery-grid" id="pets-gallery-grid">
+                    <!-- Se llena dinámicamente con JavaScript con las fotos de Sofi y Benji -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 7. SECCIÓN BLOC DE NOTAS COMPARTIDO EN TIEMPO REAL             -->
+        <!-- ============================================================== -->
+        <section id="bloc-notas" class="section-block notes-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill"><i class="fa-solid fa-message-heart"></i> Sincronización en Vivo</span>
+                <h2 class="section-title">Bloc de Notas <span class="gradient-love">Compartido en Vivo 📝</span></h2>
+                <p class="section-subtitle">
+                    Escribe una nota aquí y aparecerá al instante en su pantalla, como un post-it pegado en su habitación.
+                </p>
+            </div>
+
+            <div class="corkboard-wrapper glass-panel">
+                <div class="corkboard-toolbar">
+                    <div class="live-sync-indicator" id="live-sync-indicator">
+                        <span class="sync-dot"></span>
+                        <span id="sync-status-label">🟢 Sincronizado en tiempo real (España ↔ Ecuador)</span>
+                    </div>
+
+                    <div class="corkboard-btns">
+                        <button class="btn-primary-gradient" id="btn-open-new-note">
+                            <i class="fa-solid fa-thumbtack"></i> <span>Pegar Nueva Nota</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Notificación de escritura -->
+                <div class="typing-alert hidden" id="typing-alert-box">
+                    <i class="fa-solid fa-pen-fancy"></i> <span>Tu amorcito está escribiendo una notita...</span>
+                </div>
+
+                <!-- Muro de Post-its -->
+                <div class="post-its-wall" id="post-its-container">
+                    <!-- Renderizado dinámico -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 7. SECCIÓN BUZÓN: CARTAS PARA ABRIR CUANDO... 💌📬            -->
+        <!-- ============================================================== -->
+        <section id="buzon-cartas" class="section-block mailbox-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill special-mailbox-pill"><i class="fa-solid fa-envelope-circle-check"></i> Cápsula de Cartas Virtuales</span>
+                <h2 class="section-title">Buzón: <span class="gradient-love">"Cartas para abrir cuando..." 💌✨</span></h2>
+                <p class="section-subtitle">
+                    Toca cada sobre cuando llegue el momento indicado para romper el sello de cera y leer las palabras que te escribí con todo mi corazón.
+                </p>
+            </div>
+
+            <!-- Barra de Acciones del Buzón -->
+            <div class="mailbox-action-bar">
+                <div class="mailbox-count-tag">
+                    <i class="fa-solid fa-envelope-open-text"></i> <span id="mailbox-total-count">5</span> Sobres Especiales Esperándote
+                </div>
+                <button class="btn-primary-gradient" id="btn-open-create-letter">
+                    <i class="fa-solid fa-pen-nib"></i> <span>Crear Nueva Carta</span>
+                </button>
+            </div>
+
+            <!-- Grid de Sobres 3D Desplegables -->
+            <div class="envelopes-grid" id="envelopes-grid">
+                <!-- Se llena dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <!-- ============================================================== -->
+        <!-- 8. SISTEMA DE "ENVIAR UN ABRAZO" EN TIEMPO REAL 🫂💖          -->
+        <!-- ============================================================== -->
+        <section id="enviar-abrazo" class="section-block hugs-block">
+            <div class="section-heading-wrap">
+                <span class="badge-pill special-hug-pill"><i class="fa-solid fa-hands-holding-child"></i> Conexión Inmediata (España 🇪🇸 ↔ Ecuador 🇪🇨)</span>
+                <h2 class="section-title">Envía un <span class="gradient-love">Abrazo en Tiempo Real 🫂✨</span></h2>
+                <p class="section-subtitle">
+                    Cuando presionas el botón, tu amorcito recibirá al instante una animación mágica, corazones flotantes y un sonido tierno en su pantalla, sin importar los 9.080 km.
+                </p>
+            </div>
+
+            <!-- Selector de Identidad -->
+            <div class="hug-identity-selector glass-panel">
+                <div class="identity-header">
+                    <span class="identity-label"><i class="fa-solid fa-user-tag"></i> ¿Quién está en esta pantalla?:</span>
+                    <span class="identity-hint">(Toca tu nombre para que el abrazo salga desde ti)</span>
+                </div>
+                <div class="identity-toggle-group">
+                    <button class="identity-btn active" data-sender="riham" id="btn-identity-riham">
+                        <span class="identity-avatar">👧🏻🌸</span>
+                        <div class="identity-meta">
+                            <strong>Soy Riham</strong>
+                            <small>Cataluña, España 🇪🇸</small>
+                        </div>
+                    </button>
+                    <button class="identity-btn" data-sender="jonathan" id="btn-identity-jonathan">
+                        <span class="identity-avatar">👦🏻✨</span>
+                        <div class="identity-meta">
+                            <strong>Soy Jonathan</strong>
+                            <small>Guayaquil, Ecuador 🇪🇨</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tarjeta Central del Sistema de Abrazos -->
+            <div class="hug-main-card glass-panel">
+                <!-- Estado de Conexión en Vivo -->
+                <div class="hug-status-bar">
+                    <div class="hug-live-badge">
+                        <span class="pulse-dot"></span>
+                        <span id="hug-sync-status">🟢 Conectado en tiempo real (España ↔ Ecuador)</span>
+                    </div>
+                    <div class="hug-total-stat">
+                        <i class="fa-solid fa-heart-pulse"></i> Total de Abrazos: <strong id="stat-total-hugs">0</strong>
+                    </div>
+                </div>
+
+                <!-- Selector del Tipo de Abrazo -->
+                <div class="hug-type-selector">
+                    <label class="hug-type-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Elige el tipo de abrazo:</label>
+                    <div class="hug-type-chips" id="hug-type-chips">
+                        <button class="hug-type-chip active" data-hug-type="apretado" data-hug-title="Te extraño" data-hug-emoji="🫂">
+                            <span class="chip-emoji">🫂</span>
+                            <span class="chip-text">Te extraño</span>
+                        </button>
+                        <button class="hug-type-chip" data-hug-type="besito" data-hug-title="Cariñoso" data-hug-emoji="💖">
+                            <span class="chip-emoji">💖</span>
+                            <span class="chip-text">Cariñoso</span>
+                        </button>
+                        <button class="hug-type-chip" data-hug-type="buenas-noches" data-hug-title="Buenas noches" data-hug-emoji="🌙">
+                            <span class="chip-emoji">🌙</span>
+                            <span class="chip-text">Buenas noches</span>
+                        </button>
+                        <button class="hug-type-chip" data-hug-type="energia" data-hug-title="Para darte ánimos" data-hug-emoji="⚡">
+                            <span class="chip-emoji">⚡</span>
+                            <span class="chip-text">Para darte ánimos</span>
+                        </button>
+                        <button class="hug-type-chip" data-hug-type="consentido" data-hug-title="Porque sí" data-hug-emoji="👑">
+                            <span class="chip-emoji">👑</span>
+                            <span class="chip-text">Porque sí</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dedicatoria Opcional Rápida -->
+                <div class="hug-message-input-wrap">
+                    <i class="fa-solid fa-comment-heart"></i>
+                    <input type="text" id="input-hug-message" placeholder="Añade un mensajito o dedicatoria rápida (opcional)..." maxlength="120">
+                </div>
+
+                <!-- Botón Gigante de Enviar Abrazo -->
+                <div class="hug-button-container">
+                    <div class="hug-ripple-effect"></div>
+                    <div class="hug-ripple-effect r2"></div>
+                    <button class="btn-giant-hug" id="btn-send-live-hug">
+                        <div class="hug-btn-inner">
+                            <span class="hug-big-emoji" id="hug-btn-emoji">🫂</span>
+                            <span class="hug-btn-title" id="hug-btn-action-text">Enviar Abrazo a Jonathan</span>
+                            <span class="hug-btn-subtitle" id="hug-btn-sub-text">Toca para mandar calor y amor al instante ✨</span>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Contadores y Comparativa Riham / Jonathan -->
+                <div class="hug-stats-row">
+                    <div class="hug-stat-card stat-riham">
+                        <span class="stat-icon">👧🏻</span>
+                        <div class="stat-info">
+                            <span class="stat-label">Enviados por Riham:</span>
+                            <strong class="stat-val" id="stat-hugs-riham">0</strong>
+                        </div>
+                    </div>
+                    <div class="hug-stat-card stat-between">
+                        <i class="fa-solid fa-heart-circle-bolt stat-bolt-icon"></i>
+                        <span>Amor sin distancias</span>
+                    </div>
+                    <div class="hug-stat-card stat-jonathan">
+                        <span class="stat-icon">👦🏻</span>
+                        <div class="stat-info">
+                            <span class="stat-label">Enviados por Jonathan:</span>
+                            <strong class="stat-val" id="stat-hugs-jonathan">0</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Muro en Vivo de los Últimos Abrazos -->
+            <div class="hug-history-section">
+                <div class="hug-history-header">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <h3>Historial de Abrazos Compartidos en Tiempo Real 💌</h3>
+                </div>
+                <div class="hug-history-list" id="hug-history-list">
+                    <!-- Se llena dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================== -->
+    <!-- MODALES Y VENTANAS EMERGENTES                                  -->
+    <!-- ============================================================== -->
+
+    <!-- MODAL 1: CARTA SECRETA CON SELLO LACRADO -->
+    <div class="modal-overlay hidden" id="modal-love-letter">
+        <div class="letter-modal-wrap">
+            <button class="btn-close-modal" id="btn-close-letter"><i class="fa-solid fa-xmark"></i></button>
+            <div class="vintage-parchment">
+                <div class="parchment-stamp">
+                    <span class="stamp-route">🇪🇨 ✈️ 🇪🇸</span>
+                    <span class="stamp-date-text">21 · MAYO · 2026 · ∞</span>
+                </div>
+
+                <h3 class="parchment-heading">Para mi persona favorita en el mundo, Jonathan:</h3>
+
+                <div class="parchment-content-scroll">
+                    <p>
+                        Esta web la cree pensando sobre todas aquellas partidas o de todas las horas hablando sin darnos cuenta de la hora y de ese 21 de mayo en el que te atreviste a pedirme el número jajsjsaj.
+                    </p>
+                    <p>
+                        Pasamos de que me esperaras en el lobby del Arenoso a tener un lugar donde la distancia no es para tanto.
+                    </p>
+                    <p>
+                        Aquí dentro hay recuerdos de todo lo que jugamos y jugaremos, fotos, las cosas que a veces se te olvidan jajajajsjs, y un par de cartas para cuando las necesites.
+                    </p>
+                    <p>
+                        Gracias por ser el primero en decirme que me querías y me amabas, por hacerme sonreír frente a la pantalla cada día, por las risas en cada juego al que nos metemos y por estar ahí al otro lado de la pantalla.
+                    </p>
+                    <p>
+                        Esta carta no caduca, léela siempre que quieras acordarte de lo mucho que te quiero &lt;33333333.
+                    </p>
+                    <p class="parchment-signature-wrap">
+                        Con todo mi amor siempre,<br>
+                        <span class="handwritten-signature">Riham ❤️</span>
+                    </p>
+                </div>
+
+                <div class="wax-seal-footer">
+                    <div class="wax-seal-badge">❤️</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: AÑADIR NUEVA FECHA ESPECIAL -->
+    <div class="modal-overlay hidden" id="modal-add-date">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-calendar-plus"></i> Añadir Fecha Especial</h3>
+                <button class="btn-close-modal" id="btn-close-add-date"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-add-date" class="modal-form-content">
+                <div class="form-field">
+                    <label>Título de la Fecha:</label>
+                    <input type="text" id="input-date-title" placeholder='Ej: "El día de nuestra primera llamada de 8 horas"' required maxlength="70">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-field">
+                        <label>Día y Mes:</label>
+                        <input type="date" id="input-date-value" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Emoji Representativo:</label>
+                        <select id="select-date-emoji">
+                            <option value="💖">💖 Corazón</option>
+                            <option value="🎮">🎮 Videojuego / Partida</option>
+                            <option value="🎂">🎂 Cumpleaños</option>
+                            <option value="💬">💬 Mensaje especial</option>
+                            <option value="🌸">🌸 Florecitas</option>
+                            <option value="✈️">✈️ Viaje / Encuentro</option>
+                            <option value="👑">👑 Rey / Reina</option>
+                            <option value="✨">✨ Magia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Etiqueta / Tag:</label>
+                    <input type="text" id="input-date-tag" placeholder="Ej: Momento Sagrado, Aniversario, Risas..." required maxlength="30">
+                </div>
+
+                <div class="form-field">
+                    <label>Descripción / Por qué es importante:</label>
+                    <textarea id="input-date-desc" rows="2" placeholder="Escribe por qué este día significa tanto para ambos..." required></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label>Mensaje Secreto (se revela al hacer clic):</label>
+                    <input type="text" id="input-date-secret" placeholder="Ej: ¡Te amo más que a nada en el mundo! 🥺❤️" required>
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-add-date">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-check"></i> Guardar Recordatorio</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: SUBIR NUEVA FOTO / CAPTURA GAMER -->
+    <div class="modal-overlay hidden" id="modal-upload-photo">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-gamepad"></i> Agregar Foto a Nuestro Álbum</h3>
+                <button class="btn-close-modal" id="btn-close-upload"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-upload-memory" class="modal-form-content">
+                <div class="form-field">
+                    <label>Videojuego:</label>
+                    <select id="select-game" required>
+                        <option value="minecraft">🧱 Minecraft</option>
+                        <option value="valorant">🎯 Valorant</option>
+                        <option value="genshin">✨ Genshin Impact</option>
+                        <option value="roblox">🎲 Roblox</option>
+                        <option value="it-takes-two">👫 It Takes Two</option>
+                        <option value="stardew">🌾 Stardew Valley</option>
+                        <option value="otros">🕹️ Otro Videojuego</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Título del Recuerdo:</label>
+                    <input type="text" id="input-photo-title" placeholder="Ej: Ganando la partida juntos en overtime" required maxlength="60">
+                </div>
+
+                <div class="form-field">
+                    <label>Dedicatoria / ¿Qué pasó en ese momento?:</label>
+                    <textarea id="input-photo-desc" rows="3" placeholder="Escribe lo que sentiste o una frase linda de esa partida..." required></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label>📁 Subir Foto desde tu PC / Teléfono:</label>
+                    <input type="file" id="input-photo-file" accept="image/*" class="file-upload-input">
+                    <div class="field-divider-or">o pega el enlace (URL) de una imagen:</div>
+                    <input type="url" id="input-photo-url" placeholder="https://ejemplo.com/captura.jpg">
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-upload">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-check"></i> Guardar en el Álbum</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: LIGHTBOX DE FOTOS EN PANTALLA COMPLETA -->
+    <div class="modal-overlay hidden" id="modal-gallery-lightbox">
+        <div class="lightbox-dialog glass-panel">
+            <button class="btn-close-modal" id="btn-close-lightbox"><i class="fa-solid fa-xmark"></i></button>
+            <div class="lightbox-image-holder">
+                <img id="lightbox-full-img" src="" alt="Recuerdo">
+            </div>
+            <div class="lightbox-info-pane">
+                <div class="lightbox-tags-row">
+                    <span class="game-badge-pill" id="lightbox-badge">Recuerdo</span>
+                    <span class="lightbox-date-text" id="lightbox-date"></span>
+                </div>
+                <h3 id="lightbox-title-text"></h3>
+                <p id="lightbox-caption-text"></p>
+                <div class="lightbox-actions-row">
+                    <button class="btn-love-counter" id="btn-lightbox-like">
+                        <i class="fa-solid fa-heart"></i> <span id="lightbox-like-count">1</span> Me encanta
+                    </button>
+                    <button class="btn-secondary-glass btn-edit-lightbox-trigger" id="btn-lightbox-edit">
+                        <i class="fa-solid fa-pen-to-square"></i> <span>Personalizar Título, Fecha y Descripción</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 8: PERSONALIZAR TÍTULO, FECHA Y DESCRIPCIÓN DE CUALQUIER FOTO -->
+    <div class="modal-overlay hidden" id="modal-edit-memory">
+        <div class="modal-card-box glass-panel modal-edit-box">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-pen-to-square"></i> Personalizar Recuerdo</h3>
+                <button class="btn-close-modal" id="btn-close-edit-memory"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-edit-memory" class="modal-form-content">
+                <input type="hidden" id="edit-memory-id">
+
+                <div class="form-field">
+                    <label><i class="fa-solid fa-heading"></i> Título de la Foto / Captura:</label>
+                    <input type="text" id="edit-memory-title" placeholder="Ej: Nuestra casita rosa en la montaña" required maxlength="90">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-field">
+                        <label><i class="fa-solid fa-calendar"></i> Fecha del Momento:</label>
+                        <input type="text" id="edit-memory-date" placeholder="Ej: 21 de Mayo de 2026" required maxlength="50">
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fa-solid fa-tag"></i> Categoría / Videojuego:</label>
+                        <input type="text" id="edit-memory-category" placeholder="Ej: Roblox, Minecraft, Nosotros..." required maxlength="40">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label><i class="fa-solid fa-comment-heart"></i> Dedicatoria / Descripción Especial:</label>
+                    <textarea id="edit-memory-desc" rows="4" placeholder="Escribe lo que sentiste, una anécdota divertida o un mensaje romántico para Jonathan..." required></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-edit-memory">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 9: AÑADIR FOTO A SECCIÓN NOSOTROS -->
+    <div class="modal-overlay hidden" id="modal-upload-nosotros">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-heart-pulse"></i> Añadir Foto a "Nosotros"</h3>
+                <button class="btn-close-modal" id="btn-close-upload-nosotros"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-upload-nosotros" class="modal-form-content">
+                <div class="form-field">
+                    <label>Título del Momento:</label>
+                    <input type="text" id="input-nosotros-title" placeholder="Ej: Mirándote en videollamada con todo mi amor" required maxlength="80">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-field">
+                        <label>Fecha del Recuerdo:</label>
+                        <input type="text" id="input-nosotros-date" placeholder="Ej: 21 de Mayo de 2026" required maxlength="40">
+                    </div>
+                    <div class="form-field">
+                        <label>Etiqueta / Tag:</label>
+                        <input type="text" id="input-nosotros-tag" placeholder="Ej: Nosotros ✨, Mi Amor ❤️..." required maxlength="30">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Dedicatoria / Descripción Íntima:</label>
+                    <textarea id="input-nosotros-desc" rows="3" placeholder="Escribe lo que sientes en tu corazón al ver esta foto..." required></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label>📁 Subir Foto desde tu PC / Teléfono:</label>
+                    <input type="file" id="input-nosotros-file" accept="image/*" class="file-upload-input">
+                    <div class="field-divider-or">o pega el enlace (URL) de una imagen:</div>
+                    <input type="url" id="input-nosotros-url" placeholder="https://ejemplo.com/foto-nosotros.jpg">
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-upload-nosotros">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-check"></i> Guardar en Nosotros</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 10: SUBIR FOTO A NUESTROS HIJOS (SOFI / BENJI) -->
+    <div class="modal-overlay hidden" id="modal-upload-pet">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-paw"></i> Subir Foto de Mascota</h3>
+                <button class="btn-close-modal" id="btn-close-upload-pet"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-upload-pet" class="modal-form-content">
+                <div class="form-field">
+                    <label>¿De quién es la foto?:</label>
+                    <select id="select-pet-target" required>
+                        <option value="sofi">🐱 Sofi (Gatita de Riham)</option>
+                        <option value="benji">🐶 Benji (Perrito de Jonathan)</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Título / Travesura:</label>
+                    <input type="text" id="input-pet-title" placeholder="Ej: Sofi durmiendo como un ángel / Benji jugando con su pelota" required maxlength="80">
+                </div>
+
+                <div class="form-field">
+                    <label>Dedicatoria / Momento tierno:</label>
+                    <textarea id="input-pet-desc" rows="3" placeholder="Escribe algo dulce sobre esta foto..." required></textarea>
+                </div>
+
+                <div class="form-field">
+                    <label>📁 Subir Foto desde tu PC / Teléfono:</label>
+                    <input type="file" id="input-pet-file" accept="image/*" class="file-upload-input">
+                    <div class="field-divider-or">o pega el enlace (URL) de una imagen:</div>
+                    <input type="url" id="input-pet-url" placeholder="https://ejemplo.com/foto-mascota.jpg">
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-upload-pet">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-check"></i> Guardar en Álbum</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 5: CREAR NUEVA NOTA ADHESIVA -->
+    <div class="modal-overlay hidden" id="modal-create-note">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-thumbtack"></i> Dejar una Notita de Amor</h3>
+                <button class="btn-close-modal" id="btn-close-note-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-create-note" class="modal-form-content">
+                <div class="form-field">
+                    <label>¿Quién escribe?:</label>
+                    <select id="select-note-author">
+                        <option value="Riham (Cataluña 👧🏻🌸)">Riham (Cataluña 👧🏻🌸)</option>
+                        <option value="Jonathan (Guayaquil 👦🏻✨)">Jonathan (Guayaquil 👦🏻✨)</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label>Color del Post-it:</label>
+                    <div class="postit-color-picker">
+                        <label><input type="radio" name="notecolor" value="pink" checked><span class="swatch sw-pink"></span></label>
+                        <label><input type="radio" name="notecolor" value="lavender"><span class="swatch sw-lavender"></span></label>
+                        <label><input type="radio" name="notecolor" value="peach"><span class="swatch sw-peach"></span></label>
+                        <label><input type="radio" name="notecolor" value="mint"><span class="swatch sw-mint"></span></label>
+                        <label><input type="radio" name="notecolor" value="starry"><span class="swatch sw-starry"></span></label>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Tu Mensaje:</label>
+                    <textarea id="input-note-text" rows="4" placeholder="Escribe algo tierno, un recordatorio de llamada o un te amo..." required maxlength="240"></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-note">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-paper-plane"></i> Pegar en el Muro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- OVERLAY EN TIEMPO REAL: ABRAZO RECIBIDO EN PANTALLA COMPLETA -->
+    <div class="hug-received-overlay hidden" id="hug-received-overlay">
+        <div class="hug-overlay-backdrop"></div>
+        <div class="hug-floating-elements" id="hug-floating-elements"></div>
+        
+        <div class="hug-received-dialog glass-panel">
+            <button class="btn-close-hug-overlay" id="btn-close-hug-overlay"><i class="fa-solid fa-xmark"></i></button>
+            <div class="hug-dialog-glow"></div>
+            
+            <div class="hug-icon-burst">
+                <span class="hug-icon-main" id="received-hug-emoji">🫂</span>
+                <div class="hug-sparkles-ring"></div>
+            </div>
+            
+            <div class="hug-received-badge" id="received-hug-badge">
+                <i class="fa-solid fa-sparkles"></i> ¡Abrazo en Tiempo Real!
+            </div>
+            
+            <h2 class="hug-received-title" id="received-hug-title">¡Has recibido un abrazo!</h2>
+            
+            <p class="hug-received-sender" id="received-hug-sender">
+                De <strong id="received-sender-name">Riham (Cataluña 👧🏻🌸)</strong> con todo su corazón
+            </p>
+            
+            <div class="hug-received-message-box" id="received-hug-message-box">
+                <i class="fa-solid fa-quote-left quote-left-icon"></i>
+                <p id="received-hug-message-text">"Te extraño muchísimo mi vida, siente este abrazo lleno de amor."</p>
+            </div>
+            
+            <div class="hug-received-time" id="received-hug-time">
+                <i class="fa-regular fa-clock"></i> Recibido hace unos segundos
+            </div>
+            
+            <div class="hug-received-actions">
+                <button class="btn-primary-gradient btn-return-hug" id="btn-return-hug">
+                    <i class="fa-solid fa-hands-holding-child"></i> <span>¡Devolver Abrazo Inmediatamente! 🫂💖</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- MODAL 12: ABRIR SOBRE "CARTAS PARA ABRIR CUANDO..." -->
+    <div class="modal-overlay hidden" id="modal-open-envelope">
+        <div class="envelope-modal-dialog">
+            <button class="btn-close-modal" id="btn-close-envelope-modal"><i class="fa-solid fa-xmark"></i></button>
+            
+            <div class="envelope-unfolded-card glass-panel" id="envelope-letter-card">
+                <div class="envelope-modal-stamp">
+                    <span id="env-modal-badge">💌 Para abrir cuando...</span>
+                    <span id="env-modal-date" class="env-stamp-date">21 · 05 · 2026</span>
+                </div>
+
+                <div class="envelope-modal-header">
+                    <span class="envelope-big-icon" id="env-modal-emoji">💌</span>
+                    <h2 class="envelope-modal-title" id="env-modal-title">Abre cuando me extrañes</h2>
+                </div>
+
+                <div class="envelope-parchment-body">
+                    <div class="envelope-parchment-scroll">
+                        <p id="env-modal-body-text"></p>
+                    </div>
+                    <div class="envelope-signature">
+                        <span>Con todo mi amor siempre,</span>
+                        <strong class="signature-name">Riham 👧🏻🌸</strong>
+                    </div>
+                </div>
+
+                <div class="envelope-modal-actions">
+                    <button class="btn-secondary-glass" id="btn-edit-envelope-content">
+                        <i class="fa-solid fa-pen-to-square"></i> <span>Personalizar Mensaje de esta Carta</span>
+                    </button>
+                    <button class="btn-primary-gradient" id="btn-close-envelope-done">
+                        <i class="fa-solid fa-heart"></i> <span>Guardar en el Corazón</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 13: CREAR / EDITAR CARTA "ABRIR CUANDO..." -->
+    <div class="modal-overlay hidden" id="modal-edit-envelope">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3 id="modal-envelope-form-title"><i class="fa-solid fa-envelope-circle-check"></i> Escribir Carta "Abrir Cuando..."</h3>
+                <button class="btn-close-modal" id="btn-close-edit-envelope"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <form id="form-edit-envelope" class="modal-form-content">
+                <input type="hidden" id="edit-envelope-id">
+
+                <div class="form-field">
+                    <label>Título del Sobre (¿Cuándo debe abrirse?):</label>
+                    <input type="text" id="input-envelope-title" placeholder="Ej: Abre cuando tengas un mal día / Abre dentro de 3 meses" required maxlength="80">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-field">
+                        <label>Emoji del Sobre:</label>
+                        <select id="select-envelope-emoji">
+                            <option value="💌">💌 Carta de Amor</option>
+                            <option value="🌧️">🌧️ Día Difícil / Triste</option>
+                            <option value="🥺">🥺 Cuando Me Extrañes</option>
+                            <option value="🎮">🎮 Cuando Estés Aburrido</option>
+                            <option value="📅">📅 Dentro de 3 Meses</option>
+                            <option value="⏳">⏳ Dentro de 5 Meses</option>
+                            <option value="🎂">🎂 Dentro de 1 Año</option>
+                            <option value="🌙">🌙 De Buenas Noches</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Subtítulo / Momento:</label>
+                        <input type="text" id="input-envelope-subtitle" placeholder="Ej: Para reconfortar tu corazoncito" required maxlength="60">
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Contenido de la Carta:</label>
+                    <textarea id="input-envelope-content" rows="6" placeholder="Escribe aquí las palabras especiales que leerá cuando abra este sobre..." required></textarea>
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn-secondary-glass" id="btn-cancel-edit-envelope">Cancelar</button>
+                    <button type="submit" class="btn-primary-gradient"><i class="fa-solid fa-envelope-open-text"></i> Guardar Sobre en el Buzón</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 7: GUARDAR EN CALENDARIO -->
+    <div class="modal-overlay hidden" id="modal-save-calendar">
+        <div class="modal-card-box glass-panel">
+            <div class="modal-card-header">
+                <h3><i class="fa-solid fa-calendar-check"></i> Guardar en tu Calendario</h3>
+                <button class="btn-close-modal" id="btn-close-calendar-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="calendar-modal-body">
+                <p id="calendar-event-title" class="cal-event-name">Nombre del Evento</p>
+                <p class="cal-event-sub">Guarda esta fecha con repetición anual para que tu teléfono te recuerde celebrarla siempre.</p>
+                <div class="cal-buttons-options">
+                    <button class="btn-primary-gradient" id="btn-download-ics">
+                        <i class="fa-solid fa-calendar-arrow-down"></i> <span>Descargar para Teléfono (.ics)</span>
+                    </button>
+                    <button class="btn-secondary-glass" id="btn-open-gcal">
+                        <i class="fa-brands fa-google"></i> <span>Abrir en Google Calendar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Flotante -->
+    <div class="love-toast hidden" id="love-toast">
+        <div class="toast-heart"><i class="fa-solid fa-heart"></i></div>
+        <div class="toast-message" id="toast-message-text">¡Te mando un abrazo enorme! ❤️</div>
+    </div>
+
+    <!-- Footer Romántico -->
+    <footer class="romantic-footer">
+        <div class="footer-content">
+            <div class="footer-big-heart">💖</div>
+            <p class="footer-main-text">
+                Hecho con todo mi amor • De <strong>Riham (Cataluña 🇪🇸)</strong> para <strong>Jonathan (Guayaquil 🇪🇨)</strong>
+            </p>
+            <p class="footer-sub-quote">
+                "No importa la distancia cuando dos corazones laten al mismo compás desde el 21 de mayo de 2026."
+            </p>
+            <div class="footer-coords-tag">
+                <span>📍 41.38° N, 2.17° E (Cataluña - Verde Pastel)</span>
+                <span class="divider-plane">✈️ 9.080 km ✈️</span>
+                <span>📍 -2.18° S, -79.88° W (Guayaquil - Rojo Fuerte Pastel)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Módulos de Autenticación, Emparejamiento y Backend en Tiempo Real -->
+    <script src="auth-config.js"></script>
+    <script src="auth-service.js"></script>
+    <script src="auth-pairing.js"></script>
+
+    <!-- Script Principal Unificado -->
+    <script src="script.js"></script>
+</body>
+</html>
