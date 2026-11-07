@@ -126,9 +126,7 @@ class RomanticAuthPairingService {
       if (typeof Gun !== "undefined") {
         this.gunDb = Gun({
           peers: [
-            'https://gun-manhattan.herokuapp.com/gun',
-            'https://peer.wallie.io/gun',
-            'https://gun-us.herokuapp.com/gun'
+            'https://gun.eco/gun'
           ],
           localStorage: false
         });

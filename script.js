@@ -1823,9 +1823,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     if (typeof Gun !== "undefined") {
       gunDb = Gun([
-        'https://gun-manhattan.herokuapp.com/gun',
-        'https://peer.wallie.io/gun',
-        'https://gun-us.herokuapp.com/gun'
+        'https://gun.eco/gun'
       ]);
       gunNotesNode = gunDb.get('jonathan_riham_romantic_shared_notes_v2026');
     }
