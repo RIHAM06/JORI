@@ -36,6 +36,16 @@
     <!-- Hojas de Estilos -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="auth-pairing.css">
+    <link rel="stylesheet" href="pwa-style.css">
+
+    <!-- Configuración PWA y Móvil -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#f43f5e">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="JoRi ❤️">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 </head>
 <body>
     <!-- Canvas de Fondo Interactivo: Corazones y Polvo de Estrellas -->
@@ -1239,5 +1249,23 @@
 
     <!-- Script Principal Unificado -->
     <script src="script.js"></script>
+
+    <!-- Banner Flotante para Instalar la App en el Móvil -->
+    <div id="pwa-install-banner" class="pwa-install-card hidden">
+        <div class="pwa-install-content">
+            <div class="pwa-icon-box">
+                <img src="icons/icon-192.png" alt="Icono de la App JoRi" class="pwa-thumb">
+            </div>
+            <div class="pwa-text-box">
+                <h4>Instalar App JoRi ❤️</h4>
+                <p>Ten nuestro universo interactivo siempre a mano en tu pantalla de inicio.</p>
+            </div>
+            <button id="pwa-install-btn" class="pwa-btn-primary">Instalar</button>
+            <button id="pwa-close-btn" class="pwa-btn-close" aria-label="Cerrar">&times;</button>
+        </div>
+    </div>
+
+    <!-- Gestor de Instalación PWA & Service Worker -->
+    <script src="pwa-manager.js"></script>
 </body>
 </html>

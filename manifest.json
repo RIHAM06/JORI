@@ -1,0 +1,35 @@
+{
+  "id": "jori-app",
+  "name": "Para Jonathan, Mi Amor | Nuestro Universo ❤️",
+  "short_name": "JoRi ❤️",
+  "description": "Un rincón interactivo, romántico y eterno de Riham para Jonathan.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#f43f5e",
+  "lang": "es",
+  "categories": ["lifestyle", "entertainment"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
+
